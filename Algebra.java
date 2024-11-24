@@ -1,7 +1,4 @@
 
-import org.w3c.dom.css.Counter;
-
-// Implements algebraic operations and the square root function without using 
 // the Java operations a + b, a - b, a * b, a / b, a % b, and without calling 
 // Math.sqrt. All the functions in this class operate on int values and
 // return int values.
@@ -99,22 +96,25 @@ public class Algebra {
 	}	
 
 	// Returns the integer part of sqrt(x) 
-	public static int sqrt(int x) {
+	public static int sqrt( int x ) {
 		int y = x;
 		int y2 = div(x, 2);
 		int checker = times(y2, y2);
 		int counter = 0;
-		int result = 0;
-		if (y == 1){
+		if (y == 1 || y==0){
 			return y;
 		}
-		while ( counter == 0 ){
-			if( checker >= y ){
-				return checker;
-			}else{
-				checker++;
-			}			
+		while( counter == 0){
+			if (checker == y){
+				counter++;
+			}
+			else{
+				y2++;
+				checker = times(y2, y2);
+			}
 		}
+		return y2;
+
 	}
 }
 	
