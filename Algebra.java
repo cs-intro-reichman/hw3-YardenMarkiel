@@ -1,3 +1,6 @@
+
+import org.w3c.dom.css.Counter;
+
 // Implements algebraic operations and the square root function without using 
 // the Java operations a + b, a - b, a * b, a / b, a % b, and without calling 
 // Math.sqrt. All the functions in this class operate on int values and
@@ -25,43 +28,99 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
-	}
+		int y1 = x1;
+		int y2 = x2;
+		for (int i = 0; i < y2; i++){
+			y1++;
+		}	
+		return y1;
+}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int y1 = x1;
+		int y2 = x2;
+		for (int i = 0; i < y2; i++) {
+			y1--;
+		}
+		return y1;
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int y1 = x1;
+		int y2 = x2;
+		int y3 = x1;
+		for (int i = 0; i < y2; i++) {
+			y1 = plus(y3, y1);
+		}
+		return y1;
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+		int y1 = x;
+		int n1 = n;
+		int y3 = y1;
+		for(int i = 0; i < n ; i++ ){
+			y3 = times(y3, y1);
+		}
+		return y3;
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int y1 = x1;
+		int y2 = x2;
+		int result = 0;
+		int checker = 1;
+		while ( result == 0){
+			int y3 = times(y1, checker);
+			if (y3 >= y2 ){
+				result = checker;
+			}else{
+				checker++;
+			}
+		}
+		return result;
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int y1 = x1;
+		int y2 = x2;
+		int result = 0;
+		int checker = div(y1, y2);
+		checker = times(checker, y1);
+		if(checker != y2){
+			result = minus(y2, checker);
+		}
+		return result;
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
-	}	  	  
+		int y = x;
+		int y2 = div(x, 2);
+		int checker = times(y2, y2);
+		int counter = 0;
+		int result = 0;
+		if (y == 1){
+			return y;
+		}
+		while ( counter == 0 ){
+			if( checker >= y ){
+				return checker;
+			}else{
+				checker++;
+			}			
+		}
+	}
 }
+	
+
+
+	
+	
+
+
