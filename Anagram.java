@@ -1,3 +1,5 @@
+
+
 /** Functions for checking if a given string is an anagram. */
 public class Anagram {
 	public static void main(String args[]) {
@@ -56,9 +58,8 @@ public class Anagram {
 			if ( (x >= 'A') && ( x <= 'Z') ){
 				x = (char)(str1.charAt(i) + 32);
 				newStr = newStr + x;
-			}else if ( (x >= 'a') && (x <= 'z')) {
-				newStr = newStr + x;
-			}		
+			} else if ( (x >= 'a') && (x <= 'z')) newStr = newStr + x;
+			  else if (( x == ' ')) newStr = newStr + " ";	
 		}
 		return newStr;
 	} 
