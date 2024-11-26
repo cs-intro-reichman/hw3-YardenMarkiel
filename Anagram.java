@@ -69,13 +69,26 @@ public class Anagram {
 	public static String randomAnagram(String str) {
 		String str1 = preProcess(str);
 		String newStr = "";
-		while (str1.length() != 0){
+		while (str1.length() > 0) {
 			double x = Math.random();
-			x = 1 + ( x * str1.length());	
-			newStr = newStr + str1.charAt((int)x);
-			str1 = str1.substring((int) x) + str1.substring( (int)x + 1);
+			int index = (int)(x * str1.length());
+			char selectedChar = ' ';
+			for (int i = 0; i < str1.length(); i++) {
+				if (i == index) {
+					selectedChar = str1.charAt(i);
+				}
 			}
+			newStr += selectedChar;
+			String temp = "";
+			for (int i = 0; i < str1.length(); i++) {
+				if (i != index) {
+					temp += str1.charAt(i);
+				}
+			}
+			str1 = temp;
+		}
 		return newStr;
 	}
-	}
+}
+	
 

@@ -32,11 +32,11 @@ public class Algebra {
 				y1++;
 			}
 		} else if ( ( y1 < 0) && ( y2 < 0) ){
-			for (int i = 0; i < y2 ; i--) {
+			for (int i = 0; i > y2 ; i--) {
 				y1--;
 			}
 		} else if ( (y1 >= 0) ){
-			for (int i = 0; i < y2 ; i--) {
+			for (int i = 0; i > y2 ; i--) {
 				y1--;
 			}
 		} else {
@@ -102,7 +102,7 @@ public class Algebra {
 		if ( n1 == 0 ) return  1;
 		if ( n1 == 1 ) return  y1;
 		if ( n1 > 1){
-			for(int i = 0; i < n ; i++ ){
+			for(int i = 1; i < n ; i++ ){
 				y3 = times(y3, y1);
 			}
 		} 
@@ -113,14 +113,13 @@ public class Algebra {
 	public static int div(int x1, int x2) {
 		int y1 = x1;
 		int y2 = x2;
-		int negativeCheck = 0;
+		int negativeCheck = -1;
 		int result = 0;
 		int checker = 1;
 		if ( ( y1 == 0 ) ) return 0;
 		if ( ( y2 == 1 ) ) return 1; 
 		if ( ( y1 > 0 ) && ( y2 > 0 ) ) negativeCheck = 1;
 		if ( ( y1 < 0 ) && ( y2 < 0 ) ) negativeCheck = 1;
-		else negativeCheck = -1; // checks if one of the numbers is negative
 		while ( result == 0){
 			int y3 = times(y1, checker);
 			if (y3 >= y2 ){
@@ -139,6 +138,8 @@ public class Algebra {
 		int y2 = x2;
 		int result = 0;
 		int checker = div(y1, y2);
+		if ( y2 == 1) return 0;
+		if ( y1 == 0) return 0;
 		checker = times(checker, y1);
 		if(checker != y2){
 			result = minus(y2, checker);
@@ -157,7 +158,7 @@ public class Algebra {
 		}
 		while( counter == 0){
 			if (checker == y){
-				counter++;
+				return y2;
 			}
 			else{
 				y2++;
