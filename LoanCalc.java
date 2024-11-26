@@ -32,7 +32,8 @@ public class LoanCalc {
 		double rate1 =  rate / 100;
 		int n1 = n;
 		for( int i = 0 ; i < n1 ; i++){
-			loan1 = loan1 * (1 + rate1) - payment;
+			loan1 = loan1 - payment;
+			loan1 = ( loan1 ) * (1 + rate1);
 		}
 		return loan1;
 	}
