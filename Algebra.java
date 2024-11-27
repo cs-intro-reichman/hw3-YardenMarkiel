@@ -51,20 +51,17 @@ public class Algebra {
 	public static int minus(int x1, int x2) {
 		int y1 = x1;
 		int y2 = x2;
-		if ( ( y1 >= 0 ) && ( y2 >= 0)){
+		if ( ( y2 >= 0) ){ //y2 is positive
 			for (int i = 0; i < y2; i++) {
 				y1--;
 			}
-		} else if ( ( y1 >= 0) ){
-			y1 = plus(y1, y2);
-		} else {
-			for (int i = 0; i < y2; i++) {
-				y1--;
-			}
-		}
+		} 
+		else y1 = plus(y1, y2);
 		return y1;
 		}
 		
+		
+	
 	
 
 	// Returns x1 * x2
@@ -72,25 +69,24 @@ public class Algebra {
 		int y1 = x1;
 		int y2 = x2;
 		int y3 = x1;
-		if ( ( y1 == 1) && ( y2 == 1 ) ){
-			return  1;
-		}
+		if ( ( y1 == 0 ) || ( y2 == 0 ) ) return  0;
 		if ( ( y1 == 1) ) return  y2;
 		if ( ( y2 == 1) ) return  y1;
-		if ( ( y1 > 1 ) && ( y2 > 1 ) ){
-			for (int i = 0; i < y2; i++) {
-				y1 = plus(y3, y1);
-			}
-		} else if ( ( y1 < 0 ) && ( y2 < 0 )){
-			for (int i = 0; i < y2; i++) {
-				y1 = plus(y3, y1);
-			}
-		} else {
-			for (int i = 0; i < y2; i++) {
-				y1 = plus(y3, y1);
-				y1 = 0 - y1;
+		if ( ( y1 > 0) && ( y2 > 0 )){ 
+			for ( int i = 0 ; i < y2 ; i++ ){
+				y1 = plus(y1, y3);
 			}
 		}
+			else if ( ( y2 < 0 ) ) {  // x2 is negative
+				for ( int i = 0 ; i > y2 ; i -- ) {
+					y1 = plus(y1, y3);
+				}
+				y1 = minus(0, y1);
+			} else { //x1 is negative
+				for ( int i = 0 ; i < y2 ; i++){
+					y1 = minus(y1, y3);
+				}
+			}
 		return y1;
 	}
 
@@ -101,72 +97,51 @@ public class Algebra {
 		int y3 = y1;
 		if ( n1 == 0 ) return  1;
 		if ( n1 == 1 ) return  y1;
-		if ( n1 > 1){
-			for(int i = 1; i < n ; i++ ){
-				y3 = times(y3, y1);
+		for ( int i = 0 ; i < n1 ; i++){
+				y1 = times( y1, y3 );
 			}
-		} 
-		return y3;
+		return y1;
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
 		int y1 = x1;
 		int y2 = x2;
-		int negativeCheck = -1;
+		int negativeCheck = 1;
 		int result = 0;
-		int checker = 1;
-		if ( ( y1 == 0 ) ) return 0;
-		if ( ( y2 == 1 ) ) return 1; 
-		if ( ( y1 > 0 ) && ( y2 > 0 ) ) negativeCheck = 1;
-		if ( ( y1 < 0 ) && ( y2 < 0 ) ) negativeCheck = 1;
-		while ( result == 0){
-			int y3 = times(y1, checker);
-			if (y3 >= y2 ){
-				result = checker;
-			}else{
-				checker++;
-			}
+	
+		if (y1 < 0 && y2 > 0 || y1 > 0 && y2 < 0) {
+			negativeCheck = -1;
+		}	
+		y1 = y1 < 0 ? -y1 : y1;
+		y2 = y2 < 0 ? -y2 : y2;
+	
+		while (y1 >= y2) {
+			y1 = minus(y1, y2);
+			result = plus(result, 1);
 		}
-		result = times(result, negativeCheck);
-		return result;
+	
+		return times(result, negativeCheck);
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		int y1 = x1;
-		int y2 = x2;
-		int result = 0;
-		int checker = div(y1, y2);
-		if ( y2 == 1) return 0;
-		if ( y1 == 0) return 0;
-		checker = times(checker, y1);
-		if(checker != y2){
-			result = minus(y2, checker);
-		}
-		return result;
+		int divider = div(x1, x2);
+		int Mod1 = times(divider, x2);
+		return  minus(x1, Mod1);
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt( int x ) {
-		int y = x;
-		int y2 = div(x, 2);
-		int checker = times(y2, y2);
-		int counter = 0;
-		if (y == 1 || y==0){
-			return y;
+		int m = 2;
+		if ( x == 0 ) return 0;
+		if ( x == 1 ) return  1;
+		while ( m != 0){
+			m = times(m, m);
+			if ( m == x) return m;
+			else m++;
 		}
-		while( counter == 0){
-			if (checker == y){
-				return y2;
-			}
-			else{
-				y2++;
-				checker = times(y2, y2);
-			}
-		}
-		return y2;
-
+		return 0;
 	}
 }
 	
