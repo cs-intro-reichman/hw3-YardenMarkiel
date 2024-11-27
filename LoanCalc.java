@@ -71,8 +71,8 @@ public class LoanCalc {
 		double payment = (lowest + highest) / 2 ; 
 		iterationCounter = 0;
 		while ( (( highest - lowest ) > epsilon)) {  
-			if ((endBalance(loan, rate, n, payment) * endBalance(loan, rate, n, lowest) < 0)) lowest = payment;
-			else highest = payment;
+			if ((endBalance(loan, rate, n, payment) * endBalance(loan, rate, n, lowest) < 0)) highest = payment;
+			else lowest = payment;
 			payment = ( highest + lowest ) / 2;
 			iterationCounter++;
 		}

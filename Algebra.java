@@ -73,17 +73,17 @@ public class Algebra {
 		if ( ( y1 == 1) ) return  y2;
 		if ( ( y2 == 1) ) return  y1;
 		if ( ( y1 > 0) && ( y2 > 0 )){ 
-			for ( int i = 0 ; i < y2 ; i++ ){
+			for ( int i = 1 ; i < y2 ; i++ ){
 				y1 = plus(y1, y3);
 			}
 		}
 			else if ( ( y2 < 0 ) ) {  // x2 is negative
-				for ( int i = 0 ; i > y2 ; i -- ) {
+				for ( int i = 1 ; i > y2 ; i -- ) {
 					y1 = plus(y1, y3);
 				}
 				y1 = minus(0, y1);
 			} else { //x1 is negative
-				for ( int i = 0 ; i < y2 ; i++){
+				for ( int i = 1 ; i < y2 ; i++){
 					y1 = minus(y1, y3);
 				}
 			}
