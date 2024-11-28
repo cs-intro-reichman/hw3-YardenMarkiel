@@ -1,0 +1,26 @@
+public class Dd {
+	public static void main(String args[]) {
+        {
+        double loan = 10000;
+        double rate = 5;
+        int n = 10;
+        double payment = 1500;
+        }
+    private static double endBalance(double loan, double rate, int n, double payment) {	
+		double loan1 = loan;
+		double rate1 = 1 + (rate / 100);
+		int n1 = n;
+		int n2 = 0;
+		double payment1 = payment;
+		for( int i = 0 ; i < n1 ; i++){
+			loan1 = (loan1 - payment1) * rate1;
+			n2++;
+			if ((loan1 <= epsilon) && (n2 == n1)){
+				return 0;
+			}
+		}
+		if ( loan1 <= epsilon) return  -1; //it means we are faster than we need
+		else return loan1; //we are not getting the loan back
+	}
+    }
+}

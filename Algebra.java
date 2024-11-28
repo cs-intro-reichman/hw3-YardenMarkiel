@@ -1,4 +1,4 @@
-// Implements algebraic operations and the square root function without using 
+
 // the Java operations a + b, a - b, a * b, a / b, a % b, and without calling 
 // Math.sqrt. All the functions in this class operate on int values and
 // return int values.
@@ -25,43 +25,142 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
-	}
+		int y1 = x1;
+		int y2 = x2;
+		if ( ( y1 >= 0) && ( y2 >= 0 )){
+			for (int i = 0; i < y2; i++){
+				y1++;
+			}
+		} else if ( ( y1 < 0) && ( y2 < 0) ){
+			for (int i = 0; i > y2 ; i--) {
+				y1--;
+			}
+		} else if ( (y1 >= 0) ){
+			for (int i = 0; i > y2 ; i--) {
+				y1--;
+			}
+		} else {
+			for (int i = 0; i < y2; i++){
+				y1++;
+			}
+		}
+		return y1;
+}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
-	}
+		int y1 = x1;
+		int y2 = x2;
+		if ( ( y2 >= 0) ){ //y2 is positive
+			for (int i = 0; i < y2; i++) {
+				y1--;
+			}
+		} 
+		// check if y2 is negative 
+		else {
+			for ( int i = 0 ; i > y2 ; i-- ){
+				y1++;
+			}
+		}
+		return y1;
+		}
+		
+		
+	
+	
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int y1 = x1;
+		int y2 = x2;
+		int y3 = x1;
+		if ( ( y1 == 0 ) || ( y2 == 0 ) ) return  0;
+		if ( ( y1 == 1) ) return  y2;
+		if ( ( y2 == 1) ) return  y1;
+		if ( ( y1 > 0) && ( y2 > 0 )){ 
+			for ( int i = 1 ; i < y2 ; i++ ){
+				y1 = plus(y1, y3);
+			}
+		} 
+			else if ( ( y1 < 0 ) && ( y2 < 0)){ //both negative
+				y2 = minus(0, y2);
+				y1 = minus(0, y1);
+				for ( int i = 1 ; i < y2 ; i++ ){
+					y1 = plus(y1, y3);
+				}
+			}
+			else if ( y2 < 0 ){ //y2 negative
+				for ( int i = -1 ; i > y2 ; i--){
+					y1 = minus(y1, y3);
+				}
+			} else {
+				for ( int i = 1 ; i < y2 ; i++ ){ // y1 negative
+					y1 = minus(y1, y3);
+				}
+			}	
+		return y1;
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+		int y1 = x;
+		int n1 = n;
+		int y3 = y1;
+		if ( n1 == 0 ) return  1;
+		if ( n1 == 1 ) return  y1;
+		for ( int i = 1 ; i < n1 ; i++){
+				y1 = times( y1, y3 );
+			}
+		return y1;
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int y1 = x1;
+		int y2 = x2;
+		int negativeCheck = 1;
+		int result = 0;
+	
+		if (y1 < 0 && y2 > 0 || y1 > 0 && y2 < 0) {
+			negativeCheck = -1;
+		}	
+		y1 = y1 < 0 ? -y1 : y1;
+		y2 = y2 < 0 ? -y2 : y2;
+	
+		while (y1 >= y2) {
+			y1 = minus(y1, y2);
+			result = plus(result, 1);
+		}
+	
+		return times(result, negativeCheck);
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int divider = div(x1, x2);
+		int Mod1 = times(divider, x2);
+		return  minus(x1, Mod1);
 	}	
 
 	// Returns the integer part of sqrt(x) 
-	public static int sqrt(int x) {
-		// Replace the following statement with your code
+	public static int sqrt( int x ) {
+		int m = 2;
+		int n = times(m, m);
+		if ( x == 0 ) return 0;
+		if ( x == 1 ) return  1;
+		while ( m != 0){
+			if ( n == x) return m;
+			else if (n > x) return  minus(m, 1);
+			else m++;
+			n = times(m, m);
+		}
 		return 0;
-	}	  	  
+	}
 }
+	
+
+
+	
+	
+
+
