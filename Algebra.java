@@ -56,7 +56,12 @@ public class Algebra {
 				y1--;
 			}
 		} 
-		else y1 = plus(y1, y2);
+		// check if y2 is negative 
+		else {
+			for ( int i = 0 ; i > y2 ; i-- ){
+				y1++;
+			}
+		}
 		return y1;
 		}
 		
@@ -76,17 +81,23 @@ public class Algebra {
 			for ( int i = 1 ; i < y2 ; i++ ){
 				y1 = plus(y1, y3);
 			}
-		}
-			else if ( ( y2 < 0 ) ) {  // x2 is negative
-				for ( int i = 1 ; i > y2 ; i -- ) {
+		} 
+			else if ( ( y1 < 0 ) && ( y2 < 0)){ //both negative
+				y2 = minus(0, y2);
+				y1 = minus(0, y1);
+				for ( int i = 1 ; i < y2 ; i++ ){
 					y1 = plus(y1, y3);
 				}
-				y1 = minus(0, y1);
-			} else { //x1 is negative
-				for ( int i = 1 ; i < y2 ; i++){
+			}
+			else if ( y2 < 0 ){ //y2 negative
+				for ( int i = -1 ; i > y2 ; i--){
 					y1 = minus(y1, y3);
 				}
-			}
+			} else {
+				for ( int i = 1 ; i < y2 ; i++ ){ // y1 negative
+					y1 = minus(y1, y3);
+				}
+			}	
 		return y1;
 	}
 
@@ -97,7 +108,7 @@ public class Algebra {
 		int y3 = y1;
 		if ( n1 == 0 ) return  1;
 		if ( n1 == 1 ) return  y1;
-		for ( int i = 0 ; i < n1 ; i++){
+		for ( int i = 1 ; i < n1 ; i++){
 				y1 = times( y1, y3 );
 			}
 		return y1;
@@ -134,12 +145,14 @@ public class Algebra {
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt( int x ) {
 		int m = 2;
+		int n = times(m, m);
 		if ( x == 0 ) return 0;
 		if ( x == 1 ) return  1;
 		while ( m != 0){
-			m = times(m, m);
-			if ( m == x) return m;
+			if ( n == x) return m;
+			else if (n > x) return  minus(m, 1);
 			else m++;
+			n = times(m, m);
 		}
 		return 0;
 	}
